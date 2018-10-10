@@ -19,10 +19,15 @@ class BooksApp extends React.Component {
   };
 
   render() {
+    const { books } = this.state;
     return (
       <Router>
         <Switch>
-          <Route path="/" exact={true} component={Index} />
+          <Route
+            path="/"
+            exact={true}
+            render={() => <Index allBookData={books} />}
+          />
           <Route path="/search" component={SearchBooks} />
         </Switch>
       </Router>
