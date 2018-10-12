@@ -17,23 +17,27 @@ class BooksApp extends React.Component {
   };
 
   getAllBooks = () => {
-    BooksAPI.getAll().then((data) =>
-      this.setState({ books: data, loading: true }),
-    );
-    this.setState({
-      loading: setTimeout(() => {
-        this.setState({ loading: false });
-      }, 3000),
-    });
+    BooksAPI.getAll()
+      .then((data) => this.setState({ books: data, loading: true }))
+      .then(() =>
+        this.setState({
+          loading: setTimeout(() => {
+            this.setState({ loading: false });
+          }, 3000),
+        }),
+      )
+      .catch((error) => console.error(error));
   };
 
   changeReadingState = (book, shelf) => {
-    BooksAPI.update(book, shelf).then((response) => {
-      book.shelf = shelf;
-      this.setState((state) => ({
-        books: state.books.filter((bk) => bk.id !== book.id).concat([book]),
-      }));
-    });
+    BooksAPI.update(book, shelf)
+      .then((response) => {
+        book.shelf = shelf;
+        this.setState((state) => ({
+          books: state.books.filter((bk) => bk.id !== book.id).concat([book]),
+        }));
+      })
+      .catch((error) => console.error(error));
   };
 
   render() {
@@ -60,7 +64,15 @@ class BooksApp extends React.Component {
                   )
                 }
               />
-              <Route path="/search" component={SearchBooks} />
+              <Route
+                path="/search"
+                render={(props) => (
+                  <SearchBooks
+                    {...props}
+                    onChangeReadingState={this.changeReadingState}
+                  />
+                )}
+              />
             </Switch>
           </Fragment>
         </Router>

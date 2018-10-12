@@ -27,7 +27,9 @@ class Index extends Component {
           />
         </div>
         <div className="open-search">
-          <Link to="/search">Add a book</Link>
+          <Link to={{ pathname: '/search', state: { books: allBookData } }}>
+            Add a book
+          </Link>
         </div>
       </Fragment>
     );
