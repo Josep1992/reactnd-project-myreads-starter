@@ -70,7 +70,7 @@ body,
 .search-books-bar {
   position: fixed;
   width: 100%;
-  top: 60px;
+  top: 68px;
   left: 0;
   z-index: 5;
   display: flex;
