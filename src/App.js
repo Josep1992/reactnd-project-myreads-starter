@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import * as BooksAPI from './BooksAPI';
 import Index from './components/Index';
 import SearchBooks from './components/SearchBooks';
@@ -39,25 +39,32 @@ class BooksApp extends React.Component {
   render() {
     const { books, loading } = this.state;
     return (
-      <Router>
-        <Switch>
-          <Route
-            path="/"
-            exact={true}
-            render={() =>
-              loading ? (
-                <Loader />
-              ) : (
-                <Index
-                  allBookData={books}
-                  onChangeReadingState={this.changeReadingState}
-                />
-              )
-            }
-          />
-          <Route path="/search" component={SearchBooks} />
-        </Switch>
-      </Router>
+      <div className="list-books">
+        <Router>
+          <Fragment>
+            <div className="list-books-title">
+              <h1>MyReads</h1>
+            </div>
+            <Switch>
+              <Route
+                path="/"
+                exact={true}
+                render={() =>
+                  loading ? (
+                    <Loader />
+                  ) : (
+                    <Index
+                      allBookData={books}
+                      onChangeReadingState={this.changeReadingState}
+                    />
+                  )
+                }
+              />
+              <Route path="/search" component={SearchBooks} />
+            </Switch>
+          </Fragment>
+        </Router>
+      </div>
     );
   }
 }

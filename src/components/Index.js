@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Bookshelf from './Bookshelf';
 import { Link } from 'react-router-dom';
 
@@ -6,10 +6,7 @@ class Index extends Component {
   render() {
     const { allBookData, onChangeReadingState } = this.props;
     return (
-      <div className="list-books">
-        <div className="list-books-title">
-          <h1>MyReads</h1>
-        </div>
+      <Fragment>
         <div className="list-books-content">
           <Bookshelf
             books={allBookData.filter(
@@ -32,7 +29,7 @@ class Index extends Component {
         <div className="open-search">
           <Link to="/search">Add a book</Link>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }
