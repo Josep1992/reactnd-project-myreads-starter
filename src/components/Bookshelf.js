@@ -9,16 +9,14 @@ class Bookshelf extends Component {
 
   render() {
     const { books } = this.props;
-    this.props.books.map((book) => console.log(book));
+
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">Currently Reading</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
             {books.length !== 0
-              ? books.map((book) => {
-                  <Book info={book} key={book.id} />;
-                })
+              ? books.map((book) => <Book book={book} key={book.id} />)
               : console.log('Books are empty')}
           </ol>
         </div>
