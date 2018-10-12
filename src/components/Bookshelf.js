@@ -8,11 +8,11 @@ class Bookshelf extends Component {
   };
 
   render() {
-    const { books } = this.props;
+    const { books, tier } = this.props;
 
     return (
       <div className="bookshelf">
-        <h2 className="bookshelf-title">Currently Reading</h2>
+        <h2 className="bookshelf-title">{tier}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
             {books.length !== 0
