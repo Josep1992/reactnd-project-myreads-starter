@@ -28,13 +28,19 @@ class SearchBooks extends Component {
           if (response.error) {
             return this.setState({ search: [] });
           } else {
+            this.setState({ loading: true });
             response.forEach((bk) => {
               let find = this.state.books.filter((book) => book.id === bk.id);
               if (find[0]) {
                 bk.shelf = find[0].shelf;
               }
             });
-            return this.setState({ search: response });
+            return this.setState({
+              search: response,
+              loading: setTimeout(() => {
+                this.setState({ loading: false });
+              }, 2000),
+            });
           }
         })
         .catch((error) => console.error(error));
@@ -46,7 +52,7 @@ class SearchBooks extends Component {
   };
 
   render() {
-    const { query, search } = this.state;
+    const { query, search, loading } = this.state;
     const { onChangeReadingState } = this.props;
     return (
       <div className="search-books">
@@ -65,13 +71,17 @@ class SearchBooks extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {search.map((book) => (
-              <Book
-                book={book}
-                key={book.id}
-                onChangeReadingState={onChangeReadingState}
-              />
-            ))}
+            {loading ? (
+              <Loader />
+            ) : (
+              search.map((book) => (
+                <Book
+                  book={book}
+                  key={book.id}
+                  onChangeReadingState={onChangeReadingState}
+                />
+              ))
+            )}
           </ol>
         </div>
       </div>
