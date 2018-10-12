@@ -5,10 +5,12 @@ import Book from './Book';
 class Bookshelf extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
+    onChangeReadingState: PropTypes.func.isRequired,
+    tier: PropTypes.string.isRequired,
   };
 
   render() {
-    const { books, tier } = this.props;
+    const { books, tier, onChangeReadingState } = this.props;
 
     return (
       <div className="bookshelf">
@@ -16,7 +18,13 @@ class Bookshelf extends Component {
         <div className="bookshelf-books">
           <ol className="books-grid">
             {books.length !== 0
-              ? books.map((book) => <Book book={book} key={book.id} />)
+              ? books.map((book) => (
+                  <Book
+                    book={book}
+                    key={book.id}
+                    onChangeReadingState={onChangeReadingState}
+                  />
+                ))
               : console.log('Books are empty')}
           </ol>
         </div>

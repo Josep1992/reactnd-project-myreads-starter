@@ -27,6 +27,15 @@ class BooksApp extends React.Component {
     });
   };
 
+  changeReadingState = (book, shelf) => {
+    BooksAPI.update(book, shelf).then((response) => {
+      book.shelf = shelf;
+      this.setState((state) => ({
+        books: state.books.filter((bk) => bk.id !== book.id).concat([book]),
+      }));
+    });
+  };
+
   render() {
     const { books, loading } = this.state;
     return (
@@ -36,7 +45,14 @@ class BooksApp extends React.Component {
             path="/"
             exact={true}
             render={() =>
-              loading ? <Loader /> : <Index allBookData={books} />
+              loading ? (
+                <Loader />
+              ) : (
+                <Index
+                  allBookData={books}
+                  onChangeReadingState={this.changeReadingState}
+                />
+              )
             }
           />
           <Route path="/search" component={SearchBooks} />

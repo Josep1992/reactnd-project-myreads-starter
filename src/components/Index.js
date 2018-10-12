@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class Index extends Component {
   render() {
-    const { allBookData } = this.props;
+    const { allBookData, onChangeReadingState } = this.props;
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -16,14 +16,17 @@ class Index extends Component {
               (books) => books.shelf === 'currentlyReading',
             )}
             tier={'Currently Reading'}
+            onChangeReadingState={onChangeReadingState}
           />
           <Bookshelf
             books={allBookData.filter((books) => books.shelf === 'wantToRead')}
             tier={'Want to Read'}
+            onChangeReadingState={onChangeReadingState}
           />
           <Bookshelf
             books={allBookData.filter((books) => books.shelf === 'read')}
             tier={'Read'}
+            onChangeReadingState={onChangeReadingState}
           />
         </div>
         <div className="open-search">
