@@ -4,6 +4,9 @@ import Loader from './Loader';
 import Book from './Book';
 import { Link } from 'react-router-dom';
 
+/* https://www.youtube.com/watch?v=acJHkd6K5kI&t=0s&list=PLKC17wty6rS1XVZbRlWjYU0WVsIoJyO3s&index=4%2A%2F
+   searchAllBooks function Tutorial Requests: FEND Project 6 - Walk Through (LONG) Ryan Waite
+*/
 class SearchBooks extends Component {
   state = {
     query: '',
