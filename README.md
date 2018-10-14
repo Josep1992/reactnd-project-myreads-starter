@@ -1,8 +1,16 @@
 # My Reads Project Udacity(FED Nanodegree)
 
-In the MyReads project, you'll create a bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read. The project emphasizes using React to build the application and provides an API server and client library that you will use to persist information as you interact with the application.
+App lets you select books and change there state from:
 
-Rubric:=> [😎](https://review.udacity.com/#!/rubrics/918/view)
+- Currently Reading
+- Read
+- Want to Read
+
+You can also search books by Title or Author
+
+Rubric: [Link Here](https://review.udacity.com/#!/rubrics/918/view)
+
+In the MyReads project, you'll create a bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read. The project emphasizes using React to build the application and provides an API server and client library that you will use to persist information as you interact with the application.
 
 Install dependecies
 
