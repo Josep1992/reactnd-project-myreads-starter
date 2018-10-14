@@ -9,13 +9,17 @@ const Book = ({ book, onChangeReadingState }) => (
           style={{
             width: 128,
             height: 193,
-            backgroundImage: `url("${book.imageLinks.thumbnail}")`,
+            backgroundImage: `url("${
+              book.imageLinks
+                ? book.imageLinks.thumbnail
+                : '../images/no_book_cover.jpg'
+            }")`,
           }}
         />
         <div className="book-shelf-changer">
           <select
             onChange={(e) => onChangeReadingState(book, e.target.value)}
-            value={book.shelf || 'none'}>
+            defaultValue={book.shelf || 'none'}>
             <option value="move" disabled>
               Move to...
             </option>
